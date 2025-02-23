@@ -1,4 +1,8 @@
-# Ekonify - Garbage Classification using Machine Learning
+# Ekonify
+A Garbage Classification using Machine Learning
+
+## Problem Statement
+According to the World Bank's What a Waste 2.0 report, low-income countries often have recycling rates below 5%, compared to high-income countries where rates exceed 40% [2]. Lagos faces similar challenges due to a growing population and limited waste management infrastructure. Manual sorting is time-consuming, costly, and prone to errors, while public unawareness worsens inefficiencies. While studies like TrashNet [3] and Garbage Type Detection [4] demonstrate the potential of machine learning in waste classification, their reliance on generalised datasets limits their adaptability to specific regions like Lagos. Additionally, these solutions lack integration with public engagement platforms, which are crucial for driving scalable, community-wide impact. How can AI bridge the gap in Lagos’ waste management system and catalyse a greener, more sustainable future for its 20+ million residents?
 
 ## Project Overview
 Ekonify is a machine learning project designed to classify different types of garbage into 12 categories. The goal is to develop an efficient classification model using various machine learning techniques, optimizing performance through regularization, tuning hyperparameters, and error analysis. This implementation helps in automating waste segregation, promoting recycling, and reducing environmental pollution.
@@ -85,4 +89,5 @@ Source: [Kaggle - Garbage Classification (12 Classes)](https://www.kaggle.com/da
 Here's a detailed 5-minute explanation covering model implementation, optimization techniques, and results. [Video Link Here](https://www.youtube.com/@climiradiroberts)
 
 
-**Final Thoughts:** This project successfully demonstrated the impact of **hyperparameter tuning and optimization techniques** in improving machine learning model performance. Future improvements could include **transfer learning** for even better accuracy.
+## Final Thoughts
+This project successfully demonstrated the impact of **hyperparameter tuning and optimization techniques** in improving machine learning model performance. Future improvements could include **transfer learning** for even better accuracy.
