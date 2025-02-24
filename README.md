@@ -25,8 +25,7 @@ The dataset used for this project consists of **15,515 labeled images** belongin
 Source: [Kaggle - Garbage Classification (12 Classes)](https://www.kaggle.com/datasets/mostafaabla/garbage-classification)
 
 ## Models Implementation Details
-### 1. Classical Machine Learning Model
-The project includes three different models:
+This project includes three different models:
 1. **Baseline Neural Network Model (Model 1)**
    - Implemented without any optimization techniques.
    - No specific optimizer, regularization, or early stopping used.
