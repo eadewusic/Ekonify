@@ -7,8 +7,20 @@ Waste misclassification is a significant challenge in automated waste sorting, a
 Dataset Source: [Kaggle - Garbage Classification (12 Classes)](https://www.kaggle.com/datasets/mostafaabla/garbage-classification)
 
 ## Discussion of Findings
-Below is a summary of different training instances, their optimization techniques, and model performance.
+Below is a summary table comparing the baseline CNN (Model 1), the Optimized Neural Network (Model 2), the five CNN training instances, and the Classical ML model (SVM). Each instance utilized different optimization techniques, including varying optimizers, regularization strategies, and learning rates
 
+| Model        | Optimizer Used | Regularizer Used | Dropout Rate | L2 Lambda | Learning Rate | Early Stopping | Epochs | Num of Layers | Accuracy | Precision (Macro) | Recall (Macro) | F1 Score (Macro) |
+|-------------|----------|---------------|--------------|----------|--------------|----------------|--------|------------|----------|-------------------|---------------|----------------|
+| **Baseline (Model 1)** | Adam      | None          | 0.0          | 0.0      | 0.001        | No             | 10     | 8          | **0.7278** | 0.6817            | 0.6290        | 0.6484         |
+| **Fine-tuned (Model 2)** | AdamW     | L2 (0.0005)  | 0.4          | 0.0005   | 0.0005       | Yes            | 15     | 10         | 0.6891  | 0.6259            | **0.6549**    | 0.6303         |
+| **Instance 1** | Adam      | None          | 0.0          | 0.0      | 0.001        | No             | 10     | 10         | 0.5222  | 0.5576            | 0.3572        | 0.3749         |
+| **Instance 2** | Adam      | L2 (0.0005)  | 0.2          | 0.001    | 0.0005       | No             | 10     | 10         | 0.6431  | 0.6144            | 0.5532        | 0.5507         |
+| **Instance 3** | RMSProp   | L2 (0.0005)  | 0.3          | 0.0005   | 0.0003       | Yes            | 12     | 10         | 0.6867  | 0.6107            | 0.6404        | 0.6146         |
+| **Instance 4** | AdamW     | L1_L2 (0.0001, 0.0001) | 0.4 | 0.0001   | 0.0001       | Yes            | 12     | 10         | 0.6258  | 0.5510            | 0.6193        | 0.5665         |
+| **Instance 5** | SGD       | None          | 0.4          | 0.0001   | 0.00005      | Yes            | 12     | 10         | 0.4556  | 0.4023            | 0.5018        | 0.4151         |
+| **SVM (Classical ML)** | RBF Kernel | None          | N/A          | N/A      | N/A          | No             | N/A    | N/A        | 0.6143  | 0.5593            | 0.4859        | 0.5033         |
+
+## Key Findings & Best Performing Model
 - The **Baseline CNN (Model 1)** achieved the **highest accuracy (72.78%)**, demonstrating that even a simple CNN can outperform fine-tuned models when well-trained
 - **Optimized Neural Network (Model 2)** came close with **68.91% accuracy**, benefiting from AdamW optimization, regularization (L2), and dropout
 - Among the five instances, **Instance 3 (RMSprop + L2 + Dropout 0.3)** performed best with **68.67% accuracy** while the **SGD optimizer (Instance 5) performed the worst**, likely due to a very low learning rate (0.00005), which slowed convergence
@@ -64,4 +76,4 @@ This script will automatically fetch the model and save it in the `saved_models`
    ```
 
 ## Video Presentation
-Here's a detailed 5-minute explanation covering model implementation, optimization techniques, and results. [Video Link Here](https://www.youtube.com/@climiradiroberts)
+[Here](https://www.youtube.com/@climiradiroberts) is a detailed 5-minute explanation covering model implementation, optimization techniques, and results
