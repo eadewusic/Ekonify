@@ -12,7 +12,7 @@ Below is a summary table comparing the baseline CNN (Model 1), the Optimized Neu
 | Model        | Optimizer Used | Regularizer Used | Dropout Rate | L2 Lambda | Learning Rate | Early Stopping | Epochs | Num of Layers | Accuracy | Precision (Macro) | Recall (Macro) | F1 Score (Macro) |
 |-------------|----------|---------------|--------------|----------|--------------|----------------|--------|------------|----------|-------------------|---------------|----------------|
 | **Baseline (Model 1)** | Adam      | None          | 0.0          | 0.0      | 0.001        | No             | 10     | 8          | **0.7278** | 0.6817            | 0.6290        | 0.6484         |
-| **Fine-tuned (Model 2)** | AdamW     | L2 (0.0005)  | 0.4          | 0.0005   | 0.0005       | Yes            | 15     | 10         | 0.6891  | 0.6259            | **0.6549**    | 0.6303         |
+| **Optimized Neural Network (Model 2)** | AdamW     | L2 (0.0005)  | 0.4          | 0.0005   | 0.0005       | Yes            | 15     | 10         | 0.6891  | 0.6259            | **0.6549**    | 0.6303         |
 | **Instance 1** | Adam      | None          | 0.0          | 0.0      | 0.001        | No             | 10     | 10         | 0.5222  | 0.5576            | 0.3572        | 0.3749         |
 | **Instance 2** | Adam      | L2 (0.0005)  | 0.2          | 0.001    | 0.0005       | No             | 10     | 10         | 0.6431  | 0.6144            | 0.5532        | 0.5507         |
 | **Instance 3** | RMSProp   | L2 (0.0005)  | 0.3          | 0.0005   | 0.0003       | Yes            | 12     | 10         | 0.6867  | 0.6107            | 0.6404        | 0.6146         |
