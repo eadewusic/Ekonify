@@ -1,86 +1,67 @@
-# Ekonify
-A Garbage Classification using Machine Learning
+# Ekonify - A Waste Classification using Machine Learning and Deep Learning
 
-## Problem Statement
-According to the World Bank's What a Waste 2.0 report, low-income countries often have recycling rates below 5%, compared to high-income countries where rates exceed 40% [2]. Lagos faces similar challenges due to a growing population and limited waste management infrastructure. Manual sorting is time-consuming, costly, and prone to errors, while public unawareness worsens inefficiencies. While studies like TrashNet [3] and Garbage Type Detection [4] demonstrate the potential of machine learning in waste classification, their reliance on generalised datasets limits their adaptability to specific regions like Lagos. Additionally, these solutions lack integration with public engagement platforms, which are crucial for driving scalable, community-wide impact. How can AI bridge the gap in Lagos’ waste management system and catalyse a greener, more sustainable future for its 20+ million residents?
+![alt text](image.png)
 
-## Project Overview
-Ekonify is a machine learning project designed to classify different types of garbage into 12 categories. The goal is to develop an efficient classification model using various machine learning techniques, optimizing performance through regularization, tuning hyperparameters, and error analysis. This implementation helps in automating waste segregation, promoting recycling, and reducing environmental pollution.
+Waste misclassification is a significant challenge in automated waste sorting, affecting recycling efficiency and environmental sustainability. This project explores **deep learning (CNN models) and classical machine learning (SVM)** to classify waste into **12 categories** using image datasets. The objective is to identify the best-performing model through various optimization techniques and hyperparameter tuning.
 
-## Dataset Used
-The dataset used for this project consists of **15,515 labeled images** belonging to **12 classes**:
-- Battery
-- Biological Waste
-- Brown Glass
-- Cardboard
-- Clothes
-- Green Glass
-- Metal
-- Paper
-- Plastic
-- Shoes
-- Trash
-- White Glass  
+Dataset Source: [Kaggle - Garbage Classification (12 Classes)](https://www.kaggle.com/datasets/mostafaabla/garbage-classification)
 
-Source: [Kaggle - Garbage Classification (12 Classes)](https://www.kaggle.com/datasets/mostafaabla/garbage-classification)
+## Discussion of Findings
+Below is a summary of different training instances, their optimization techniques, and model performance.
 
-## Models Implementation Details
-This project includes three different models:
-1. **Baseline Neural Network Model (Model 1)**
-   - Implemented without any optimization techniques.
-   - No specific optimizer, regularization, or early stopping used.
-   - Default hyperparameters.
-2. **Optimized Neural Network Model (Model 2)**
-   - Applied at least three optimization techniques: optimizer tuning, early stopping, dropout, and learning rate adjustment.
-   - Improved model convergence and performance.
-3. **Machine Learning Classifier (Model 3)**
-   - Implemented using an ML algorithm such as SVM, XGBoost, or Logistic Regression.
-   - Tuned hyperparameters for optimal performance.
+- The **Baseline CNN (Model 1)** achieved the **highest accuracy (72.78%)**, demonstrating that even a simple CNN can outperform fine-tuned models when well-trained
+- **Optimized Neural Network (Model 2)** came close with **68.91% accuracy**, benefiting from AdamW optimization, regularization (L2), and dropout
+- Among the five instances, **Instance 3 (RMSprop + L2 + Dropout 0.3)** performed best with **68.67% accuracy** while the **SGD optimizer (Instance 5) performed the worst**, likely due to a very low learning rate (0.00005), which slowed convergence
+- **SVM underperformed** compared to CNN models but still achieved **61.43% accuracy**, making it a viable alternative for simpler implementations
 
-## Model Training Results
-| Training Instance | Optimizer Used | Regularizer Used | Epochs | Early Stopping | Layers | Learning Rate | Accuracy | F1 Score | Recall | Precision |
-|------------------|---------------|------------------|--------|---------------|--------|---------------|----------|----------|--------|-----------|
-| Instance 1 (Baseline) | None (Default) | None | 50 | No | 3 | Default | 78.4% | 76.2% | 75.1% | 77.3% |
-| Instance 2 | Adam | L2 | 50 | No | 4 | 0.001 | 81.2% | 79.5% | 78.3% | 80.1% |
-| Instance 3 | RMSprop | L1 | 50 | Yes | 4 | 0.0005 | 83.6% | 82.1% | 80.9% | 83.0% |
-| Instance 4 | Adam | L1 + Dropout | 60 | Yes | 5 | 0.0003 | 85.9% | 84.7% | 83.8% | 85.2% |
-| Instance 5 (Bonus) | SGD | L2 + Dropout | 70 | Yes | 6 | 0.0001 | 87.1% | 86.0% | 85.2% | 86.7% |
+## Comparison: Classical ML (SVM) vs. Neural Networks
+**Neural Networks outperformed SVM**, achieving higher accuracy (72.78% vs. 61.43%). Here's my comparison:
 
-## Key Findings
-- **Baseline Neural Network (Instance 1)**: Performed reasonably well but showed signs of overfitting and slow convergence.
-- **Optimized Neural Networks (Instances 2-5)**: Applying optimizations like Adam/RMSprop, regularization, and learning rate adjustments significantly improved accuracy and F1 scores.
-- **Best Model**: Instance 5 (SGD + L2 Regularization + Dropout) yielded the highest performance with 87.1% accuracy.
-- **Comparison with Traditional ML Algorithm**: The ML classifier (e.g., SVM) achieved an accuracy of around 80.3%, making neural networks the preferred approach when optimized correctly.
+### Neural Networks (CNNs)
+- Higher accuracy across all instances, with Model 1 reaching **72.78%**
+- Able to learn complex patterns and extract meaningful features from images
+- Requires substantial computing power and hyperparameter tuning
 
-## Error Analysis & Observations
-🔹 **Overfitting Observed in Initial Training**: Basic NN model had high training accuracy but poor validation accuracy. Adding **regularization and dropout** improved generalization.  
-🔹 **ReduceLROnPlateau Was Effective**: The learning rate scheduler helped improve validation accuracy after reducing LR from **0.0005 → 0.00015 → 0.000045**.  
-🔹 **Optimized CNN Outperformed Logistic Regression**: Classical ML struggled due to lack of feature abstraction.  
+### Classical ML (SVM)
+- Easier to train and faster than CNNs.
+- Achieved **61.43% accuracy**, meaning it can still be useful for lightweight applications
+- Despite the accuracy, it struggled with certain categories like **metal and plastic**, showing lower recall
+- Lacks feature extraction capabilities compared to CNNs
+- **SVM Hyperparameters:** `C=1.0, gamma='scale', kernel='rbf', decision function='OVR'`. Even with tuning, its performance plateaued compared to CNNs
 
-## Summary & Conclusion
-- **Best Performing Model**: **Optimized CNN with AdamW + Regularization + Dropout (69.96% accuracy).**
-- **Key Takeaways**:
-  - Early stopping prevented unnecessary training.
-  - Learning rate adjustments helped stabilize loss.
-  - Data augmentation improved generalization.
+In all, CNN models (especially the Baseline Model) were more effective, showing better generalization and recall across waste categories
 
 ## How to Run the Notebook
-1. Clone the GitHub repository.
-2. Open `Summative_Intro_to_ml_[Eunice_Adewusi]_assignment.ipynb` in Jupyter Notebook or Google Colab.
-3. Install dependencies using:
+1. Clone the GitHub repository
+2. Open `Summative_Intro_to_ml__[Eunice_Adewusi]_assignment.ipynb` in Jupyter Notebook or Google Colab
+3. Install dependencies, if available in my repo, using:
    ```bash
    pip install -r requirements.txt
    ```
-4. Run each cell in order to train and evaluate the models.
-5. To load the best model, navigate to the `saved_models/` directory and use:
+4. Run each cell in order to train and evaluate the models
+
+## How to Load the Best Model
+Navigate to the `saved_models/` directory and use:
    ```python
    from tensorflow.keras.models import load_model
-   model = load_model('saved_models/best_model.keras')
+   model = load_model('saved_models/baseline_cnn.keras')
+   ```
+
+## Downloading and Loading the SVM Model
+The SVM model is stored in **Google Drive** due to its large size (~10GB). Instead of uploading the `.pkl` file to GitHub, a script is provided to download it
+
+- Step 1: Run the script to download the SVM model
+   ```sh
+   python saved_models/download_svm_model_pkl.py
+   ```
+This script will automatically fetch the model and save it in the `saved_models` folder
+
+- Step 2: Load the SVM model in Python
+   ```python
+   import pickle
+   with open("saved_models/svm_model.pkl", "rb") as file:
+      svm_model = pickle.load(file)
    ```
 
 ## Video Presentation
 Here's a detailed 5-minute explanation covering model implementation, optimization techniques, and results. [Video Link Here](https://www.youtube.com/@climiradiroberts)
-
-
-## Final Thoughts
-This project demonstrated the importance of optimization techniques in improving machine learning models. While traditional ML classifiers provided decent results, neural networks with optimization outperformed them, showing the benefits of fine-tuning hyperparameters, regularization, and early stopping. Future improvements could include **transfer learning** for even better accuracy.
