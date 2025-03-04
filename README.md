@@ -76,4 +76,4 @@ This script will automatically fetch the model and save it in the `saved_models`
    ```
 
 ## Video Presentation
-[Here](https://www.youtube.com/@climiradiroberts) is a detailed 5-minute explanation covering model implementation, optimization techniques, and results
+I covered my models' implementation, optimization techniques, and results in the video. [Watch it here](https://youtu.be/Kd9VeoNTg3Y) 
